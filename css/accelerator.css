@@ -1,0 +1,244 @@
+.header--fixed {
+  position: fixed;
+  top: 0;
+  opacity: 0;
+  z-index: -5;
+
+  left: 50%; 
+  transform: translateX(-50%); 
+  transition: .3s all;
+
+  width: 100%;
+}
+
+.header.is-show {
+  top: 0px;
+  opacity: 1;
+  z-index: 1000;
+}
+
+
+
+/* [data-title] {
+  position: relative;
+}
+[data-title]:hover::before {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -26px;
+  left: 0px;
+  display: inline-block;
+  border-radius: 2px;
+  background: var(--mdb-gray-500);
+  color: #fff;
+  font-size: 12px;
+  font-family: sans-serif;
+  white-space: nowrap;
+} */
+
+
+
+.table-status {
+    margin: 1rem 0;
+    width: auto;
+}
+
+.table-status > * > * > th {
+    border: 1px solid black;
+    border-width: 0.125rem 0 !default;
+}
+
+.table-status > * > * > td {
+    border: 1px solid lightgray;
+    border-width: 0 0.125rem !default;
+}
+
+.table-status > * > * > th,
+.table-status > * > * > td
+{
+    padding: 0.2rem 0.7rem;
+}
+
+.table-status > tbody > tr > td {
+    transition: 0.5s !default;
+}
+
+.table-status > tbody > * > td:hover {
+    color: #212529 !default;
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.table-status > * > tr.table-row-header {
+    background-color: rgba(0, 0, 0, 0.075);
+}
+
+.popover .popover-arrow {
+    display: inherit !important;
+}
+
+.message-prep {
+    position: relative !important;
+    margin: 10px 10px 10px auto !important;
+    background-color: #80E08040;
+    z-index: 1;
+}
+
+.message-prep .popover-header {
+    background-color: #80E08040;
+}
+
+.message-stud {
+    position: relative !important;
+    margin: 10px 10px 10px 10px !important;
+    background-color: #F0F0F040;
+    z-index: 1;
+}
+
+.message-stud .popover-header {
+    background-color: #F0F0F040;
+}
+
+.tooltip-inner {
+    text-align: left !important;
+}
+
+.error{ 
+    color: red; 
+}
+
+.card_image_content {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+    bottom: 0%; 
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+    color: #c9c9c9; 
+}
+
+.card:hover{
+    box-shadow: 0 0 25px rgba(33,33,33,.2);
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+}
+
+.error-input {
+  width  : 100%;
+  padding: 0;
+  color: #dc3545;
+  box-sizing: border-box;
+}
+
+.error-input.active {
+  padding: 0.3em;
+}
+
+.mask:hover {
+    opacity: 50%;
+}
+
+.mask {
+    opacity: 0%;
+}
+
+
+
+.checkmark {
+    width: 100%; 
+    height: 1px; 
+    margin-top: 5px;
+}
+
+.label-theme input:checked ~ .checkmark {
+    display: block;
+}
+
+
+.task-desc-wrapper-a {
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #1266f1
+}
+.task-desc-wrapper-a:hover {
+  color: #0e52c1;
+}
+.task-desc-wrapper-a i {
+  margin-right: 7px;
+  color: #4f4f4f;
+}
+
+.rightbadge {
+  display: inline-block;
+  padding: 1px 6px;
+  white-space: nowrap;
+  border-radius: 4px;
+  float: right;
+  margin-right: 10px;
+  color: #000;
+}
+
+.rb-green {
+  background-color: #79df91;
+}
+
+.rb-yellow {
+  background-color: #ffd641;
+}
+
+.rb-red {
+  background-color: #f4849a;
+}
+
+.rb-gray {
+  background-color: #7f7f7f;
+  color:white;
+}
+
+.axconsole {
+  border: #505050 4px solid;
+  background: #505050;
+  height: 300px;
+  overflow: auto;
+
+  font-family: courier-new, courier, monospace;
+  font-size: 15px;
+  color: #ffd641;
+  line-height: 1.1;
+
+  display: none;
+}
+
+.mdtable {
+  border: 1px solid #c9c9c9;
+  border-collapse: collapse;  
+  padding: 3px;
+}
+
+.pe-group-upper {
+  padding:8px 0px 8px 0px; 
+  margin-bottom:0px !important;
+}
+
+.pe-group-lower {
+  padding-bottom:8px; 
+  margin-top:0px !important;
+}
+
+.hint {
+  display: inline-block;
+  padding: 0px 6px;
+  white-space: nowrap;
+  background-color: #ffe187;
+  font-weight: normal;
+  color: #666666;
+}

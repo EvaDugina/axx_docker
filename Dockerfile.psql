@@ -1,0 +1,11 @@
+FROM postgres:16
+
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=7136644
+
+COPY ./for_docker/psql/psql_with_some_files.dump /psql.dump
+COPY ./for_docker/psql/init.sh /docker-entrypoint-initdb.d/init.sh
+
+RUN chmod +x /docker-entrypoint-initdb.d/init.sh
+
+EXPOSE 5432

@@ -1,0 +1,3 @@
+[submodule "codecheck/copydetect"]
+	path = codecheck/copydetect
+	url = http://vega.fcyb.mirea.ru/gitlab/kvasnikoff/copydetect

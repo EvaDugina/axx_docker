@@ -1,0 +1,34 @@
+default_install_hook_types:
+  - commit-msg
+  - pre-push
+
+repos:
+# Вручную написанный хук проверки соответствия сообщения коммита стандратам Conventional Commits
+  # - repo: local
+  #   hooks:
+  #     - entry: .hooks/prepare-commit-conventional-hook.py
+  #       id: prepare-commit-conventional
+  #       language: python
+  #       name: Conventional Commit
+  #       stages:
+  #         - commit-msg
+  
+# Хук проверки соответствия Conventional Commits от Commitizen
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.29.1
+    hooks:
+      - id: commitizen
+        stages:
+          - commit-msg
+
+# Хук для дампа версий
+  - repo: local
+    hooks:
+      - entry: .hooks/pre-push-commitizen-bump
+        id: pre-push-commitizen-bump
+        language: script
+        name: Commitizen Bump
+        stages:
+          - pre-push
+
+

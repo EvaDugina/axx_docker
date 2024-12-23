@@ -1,0 +1,10 @@
+README.md
+setup.py
+codecheck/__init__.py
+codecheck/__main__.py
+codecheck/check.py
+codecheck.egg-info/PKG-INFO
+codecheck.egg-info/SOURCES.txt
+codecheck.egg-info/dependency_links.txt
+codecheck.egg-info/entry_points.txt
+codecheck.egg-info/top_level.txt
