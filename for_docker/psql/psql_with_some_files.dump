@@ -11505,7 +11505,7 @@ COPY public.students_to_groups (id, student_id, group_id) FROM stdin;
 --
 
 COPY public.users (id, login, password, role, local_user, login_time, session_hash, last_action) FROM stdin;
-1	egor	d3a6225d12c2ea9d4e223171f5a0944b	1	t	1731017722	af3a4d69f9337ed5b3a847247d3087b9	1731018015
+-1	sergeyiva	d3a6225d12c2ea9d4e223171f5a0944b	3	t	1731017722	af3a4d69f9337ed5b3a847247d3087b9	1731018015
 2	admin	d3a6225d12c2ea9d4e223171f5a0944b	3	t	1734220219	67d1dbd52c7ce1cd2d63345c8f93cdc9	1734221487
 \.
 

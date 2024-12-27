@@ -1,7 +1,12 @@
 # Accelerator
-
+Админ:
 **Логин:** `admin`  
 **Пароль:** `7136644`  
+
+Студент:
+**Логин:** `sergeyiva`  
+**Пароль:** `7136644`  
+
 
 Онлайн редактор кода доступен по адресу: [http://localhost:8080/editor.php?assignment=-1](http://localhost:8080/editor.php?assignment=-1)
 
