@@ -28,7 +28,7 @@ services:
     volumes:
       - .:/var/www/html
     environment:
-      HOST_DIR: "/home/egor/gitlab/accel_docker"  # Для работы тестирования, менять на расположение откуда запускается Docker
+      HOST_DIR: "/var/www/html"  # Для работы тестирования, менять на расположение откуда запускается Docker
     networks:
       - app-network
 
