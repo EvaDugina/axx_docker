@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
+# run apt-get install -y docker-ce-cli
+
 # COPY package*.json ./
 
 # RUN npm install

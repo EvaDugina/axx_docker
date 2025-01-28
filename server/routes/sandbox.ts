@@ -2,6 +2,11 @@ export {};
 
 const {Router} = require('express');
 const {Docker} = require('node-docker-api');
+const docker1 = new Docker({
+    protocol: 'http',  // Указываем протокол
+    host: 'docker-dind',  // Хост
+    port: 2375  // Порт
+  });
 const {Sandbox} = require('../Sandbox');
 const tar = require('tar-stream');
 
@@ -68,7 +73,7 @@ module.exports.create = (config) => {
     const router = Router();
 
     router.post('/', async (req, res) => {
-        const docker = new Docker(config.docker);
+        const docker = docker1;
         const sandbox = new Sandbox(docker, config);
         await sandbox.start();
         sandbox.debugSession();
