@@ -1,0 +1,6 @@
+[submodule "accelerator"]
+	path = accelerator
+	url = https://vgit.mirea.ru/egtarasov/accelerator.git
+[submodule "nitori_base"]
+	path = nitori_base
+	url = https://vgit.mirea.ru/egtarasov/nitori_base.git

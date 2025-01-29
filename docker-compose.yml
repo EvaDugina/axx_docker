@@ -16,9 +16,9 @@ services:
     environment:
       DOCKER_HOST: tcp://docker-dind:2375
       DOCKER: '{"host": "tcp://docker-dind:2375"}'
-    command: sh -c "sleep 60 && npm install && npx tsc && node ./dist/index.js"
-    depends_on:
-      - docker-dind  # Зависит от контейнера с Docker
+    command: sh -c "sleep 10 && cd ./accelerator && npm install && cd ../nitori_base && npm install && npx tsc && node ./dist/index.js"
+    # depends_on:
+    #   - docker-dind  # Зависит от контейнера с Docker
 
   php:
     build:
@@ -26,7 +26,7 @@ services:
       dockerfile: Dockerfile.php
     user: root
     volumes:
-      - .:/var/www/html
+      - ./accelerator:/var/www/html
     environment:
       HOST_DIR: "/var/www/html"  # Для работы тестирования, менять на расположение откуда запускается Docker
     networks:
@@ -37,7 +37,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - .:/var/www/html
+      - ./accelerator:/var/www/html
       - ./for_docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - app-network

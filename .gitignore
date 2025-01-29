@@ -2,3 +2,5 @@ node_modules/
 dist/
 js/dist/
 share/
+accelerator/
+nitoti_base/
