@@ -16,9 +16,9 @@ services:
     environment:
       DOCKER_HOST: tcp://docker-dind:2375
       DOCKER: '{"host": "tcp://docker-dind:2375"}'
-    command: sh -c "sleep 10 && cd ./accelerator && npm install && cd ../nitori_base && npm install && npx tsc && node ./dist/index.js"
-    # depends_on:
-    #   - docker-dind  # Зависит от контейнера с Docker
+    command: sh -c "sleep 30 && cd ./accelerator && npm install && cd ../nitori_base && npm install && npx tsc && node ./dist/index.js"
+    depends_on:
+      - docker-dind 
 
   php:
     build:
@@ -28,7 +28,9 @@ services:
     volumes:
       - ./accelerator:/var/www/html
     environment:
-      HOST_DIR: "/var/www/html"  # Для работы тестирования, менять на расположение откуда запускается Docker
+      HOST_DIR: "/var/www/html"  
+      DOCKER_HOST: tcp://docker-dind:2375
+      DOCKER: '{"host": "tcp://docker-dind:2375"}'    
     networks:
       - app-network
 
@@ -54,14 +56,15 @@ services:
       - app-network
 
   docker-dind:
-    image: docker:dind  # Используем Docker-in-Docker 
-    privileged: true  # Необходимо для работы DinD
+    image: docker:dind 
+    privileged: true  
     volumes:
-      - docker-data:/var/lib/docker  # Сохраняем данные Docker внутри контейнера
+      - docker-data:/var/lib/docker  
+      - ./accelerator:/var/www/html
     networks:
       - app-network
     environment:
-      DOCKER_TLS_CERTDIR: ""  # Отключаем TLS
+      DOCKER_TLS_CERTDIR: ""  
     command: ["dockerd", "--host=tcp://0.0.0.0:2375", "--host=unix:///var/run/docker.sock"]
 
 networks:
@@ -69,4 +72,4 @@ networks:
     driver: bridge
 
 volumes:
-  docker-data:  # Том для хранения данных Docker
+  docker-data:
