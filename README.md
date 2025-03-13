@@ -24,3 +24,19 @@
 
 ```bash
 docker-compose up
+```
+
+# Инструкция по развертыванию
+
+## Git
+git submodule update --init
+
+## Accelerator
+
+1. Подменить auth_ssh
+2. Изменить параметры подключения в env.php
+
+## Докер
+1. Изменить внешний порт psql (при необходимости)
+2. docker-compose build
+3. docker-compose up
