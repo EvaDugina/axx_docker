@@ -40,3 +40,14 @@ git submodule update --init
 1. Изменить внешний порт psql (при необходимости)
 2. docker-compose build
 3. docker-compose up
+
+---
+
+# Дополнительная информация
+
+### Размер максимального загружаемого файла
+`= 10мб`, чтобы изменить: 
+- https://stackoverflow.com/questions/24306335/413-request-entity-too-large-file-upload-issue
+- for_docker/nginx/nginx.conf: client_max_body_size
+- for_docker/php/php.ini: upload_max_filesize
+- accelerator/config.json: MAX_FILE_SIZE
