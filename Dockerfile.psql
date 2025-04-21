@@ -21,7 +21,7 @@ COPY backup.sh /usr/local/bin/backup.sh
 RUN chmod +x /usr/local/bin/backup.sh
 
 # Добавляем задачу в cron (каждые 2 минуты)
-RUN echo "*/30 * * * * root /usr/local/bin/backup.sh >> /cron.log 2>&1" >> /etc/crontab
+RUN echo "*/10 * * * * root /usr/local/bin/backup.sh >> /cron.log 2>&1" >> /etc/crontab
 
 # Запускаем cron в фоновом режиме и PostgreSQL
 CMD ["sh", "-c", "cron && docker-entrypoint.sh postgres"]
