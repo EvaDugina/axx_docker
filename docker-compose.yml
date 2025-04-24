@@ -61,7 +61,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
     volumes:
-      - .${POSTGRES_BACKUP_DIR}:${POSTGRES_BACKUP_DIR}
+      - ./backups:/backups
       - .env:/.env
     ports:
       - "5050:${POSTGRES_INNER_PORT}"
@@ -84,7 +84,8 @@ services:
     networks:
       - app-network
     environment:
-      DOCKER_TLS_CERTDIR: ""  
+      DOCKER_TLS_CERTDIR: ""
+      TIMEOUT: 60  
     command: ["dockerd", "--host=tcp://0.0.0.0:2375", "--host=unix:///var/run/docker.sock"]
 
 networks:

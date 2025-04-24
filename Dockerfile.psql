@@ -11,17 +11,16 @@ RUN apt-get update && apt install dos2unix && dos2unix /docker-entrypoint-initdb
 RUN chmod +x /docker-entrypoint-initdb.d/init.sh
 
 RUN echo "****************************************"
-RUN echo "ЗАПУСК crone..."
 
 # Установка cron
 RUN apt-get install -y cron
 
 # Копируем скрипт резервного копирования и добавляем его в cron
-COPY backup.sh /usr/local/bin/backup.sh
+COPY ./for_docker/psql/backup.sh /usr/local/bin/backup.sh
 RUN chmod +x /usr/local/bin/backup.sh
 
-# Добавляем задачу в cron (каждые 2 минуты)
-RUN echo "*/10 * * * * root /usr/local/bin/backup.sh >> /cron.log 2>&1" >> /etc/crontab
+# Добавляем задачу в cron (каждые 30 минут)
+RUN echo "*/30 * * * * root /usr/local/bin/backup.sh >> /cron.log 2>&1" >> /etc/crontab
 
 # Запускаем cron в фоновом режиме и PostgreSQL
 CMD ["sh", "-c", "cron && docker-entrypoint.sh postgres"]

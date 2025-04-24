@@ -17,7 +17,7 @@ DB_PORT=$POSTGRES_INNER_PORT
 DB_USER=$POSTGRES_USER
 DB_NAME=$POSTGRES_DB
 DB_PASSWORD=$POSTGRES_PASSWORD
-BACKUP_DIR=$POSTGRES_BACKUP_DIR
+BACKUP_DIR=/backups
 
 # Устанавливаем пароль для psql
 export PGPASSWORD=$DB_PASSWORD
@@ -26,15 +26,35 @@ export PGPASSWORD=$DB_PASSWORD
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 DUMP_FILE="$BACKUP_DIR/dump_$TIMESTAMP.sql"
 
-# echo "DUMP_FILE: $DUMP_FILE" 
-
-# echo "Скрипт ДАМПА: pg_dump -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -F c -b -v -f $DUMP_FILE"
-
 # Создаем дамп всех таблиц
 pg_dump -h $DB_HOST -p $DB_PORT -U $DB_USER -C -W -E UTF8 -d $DB_NAME -f "$DUMP_FILE"
-# pg_dump -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -F c -b -v --encoding=UTF8 -f "$DUMP_FILE"
-# pg_dump -h <ВАШ_ХОСТ> -U accelerator -C -W -E UTF8 -d <ВАША_БД> -f schemas.dump
-# pg_dump -U $DB_USER -d $DB_NAME -F c -b -v -f "$DUMP_FILE"
 
 echo "Дамп базы данных создан: $DUMP_FILE"
-echo "==================================="
+
+
+# ОЧИСТКА лишних дампов
+while true; do
+
+    # Получаем количество файлов в директории
+    FILE_COUNT=$(find "$BACKUP_DIR" -maxdepth 1 -type f | wc -l)
+
+    # Проверяем, меньше ли количество файлов 5
+    if [ "$FILE_COUNT" -le 5 ]; then
+        break
+        exit 1
+    fi
+
+    # Получаем первый файл по времени модификации
+    EARLIEST_FILE=$(ls -1t "$BACKUP_DIR" | tail -n 1)
+
+    # Удаляем файл
+    rm "$BACKUP_DIR/$EARLIEST_FILE"
+
+    # Проверяем, успешно ли удален файл
+    if [ $? -eq 0 ]; then
+        echo "Файл $EARLIEST_FILE успешно удален."
+    else
+        echo "Ошибка при удалении файла $EARLIEST_FILE."
+    fi
+
+done
