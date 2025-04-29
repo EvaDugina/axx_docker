@@ -1,28 +1,25 @@
 FROM postgres:14
 
-ENV POSTGRES_USER=postgres
-ENV POSTGRES_PASSWORD=7136644
-
-# COPY ./for_docker/psql/psql_with_some_files.dump /psql.dump
 COPY ./for_docker/psql/init.sh /docker-entrypoint-initdb.d/init.sh
 COPY ./accelerator/db/*.sql /sql_dump/
 
 RUN apt-get update && apt install dos2unix && dos2unix /docker-entrypoint-initdb.d/init.sh
 RUN chmod +x /docker-entrypoint-initdb.d/init.sh
 
-RUN echo "****************************************"
 
-# Установка cron
-RUN apt-get install -y cron
+# # Установка crone для создания автоматических бэкапов базы данных
 
-# Копируем скрипт резервного копирования и добавляем его в cron
-COPY ./for_docker/psql/backup.sh /usr/local/bin/backup.sh
-RUN chmod +x /usr/local/bin/backup.sh
+# # Установка cron
+# RUN apt-get install -y cron
 
-# Добавляем задачу в cron (каждые 30 минут)
-RUN echo "*/30 * * * * root /usr/local/bin/backup.sh >> /cron.log 2>&1" >> /etc/crontab
+# # Копируем скрипт резервного копирования и добавляем его в cron
+# COPY ./for_docker/psql/make_backup.sh /make_backup.sh
+# RUN chmod +x /make_backup.sh
 
-# Запускаем cron в фоновом режиме и PostgreSQL
-CMD ["sh", "-c", "cron && docker-entrypoint.sh postgres"]
+# # Добавляем задачу в cron (каждые 5 минут)
+# RUN echo "*/5 * * * * root /usr/local/bin/backup.sh >> /cron.log 2>&1" >> /etc/crontab
+
+# # Запускаем cron в фоновом режиме и PostgreSQL
+# CMD ["sh", "-c", "cron && docker-entrypoint.sh postgres"]
 
 EXPOSE 5432

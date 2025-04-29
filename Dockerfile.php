@@ -1,3 +1,4 @@
+FROM postgres:14 as pgclient
 FROM php:8.3-fpm
 
 RUN apt-get update && apt-get install -y \
@@ -20,5 +21,10 @@ RUN chmod 1777 /tmp
 # RUN usermod -aG docker www-data
 
 # RUN chown -R www-data:www-data /var/www/html
+
+# Для создания бэкапов
+COPY --from=pgclient /usr/lib/postgresql/14/bin/pg_dump /usr/bin/pg_dump
+COPY ./for_docker/psql/make_backup.sh /make_backup.sh
+RUN chmod +x /make_backup.sh
 
 CMD ["php-fpm", "-R"]

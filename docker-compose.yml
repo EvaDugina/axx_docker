@@ -29,6 +29,8 @@ services:
     user: root
     volumes:
       - ./accelerator:/var/www/html
+      - ./backups:/backups
+      - .env:/.env
     environment:
       HOST_DIR: "/var/www/html"  
       DOCKER_HOST: tcp://docker-dind:2375
