@@ -83,7 +83,7 @@ services:
     restart: always
 
   docker-dind:
-    container_name: accel-docker-bind
+    container_name: accel-docker-dind
     image: docker:dind 
     privileged: true  
     volumes:
