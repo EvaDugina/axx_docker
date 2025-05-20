@@ -80,7 +80,7 @@ services:
       retries: 5
     networks:
       - app-network
-    restart: always
+    restart: unless-stopped
 
   docker-dind:
     container_name: accel-docker-dind
@@ -95,6 +95,7 @@ services:
       DOCKER_TLS_CERTDIR: ""
       TIMEOUT: 60  
     command: ["dockerd", "--host=tcp://0.0.0.0:2375", "--host=unix:///var/run/docker.sock"]
+    restart: unless-stopped
 
 networks:
   app-network:
