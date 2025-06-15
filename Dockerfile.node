@@ -6,16 +6,21 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# run apt-get install -y docker-ce-cli
-
-# COPY package*.json ./
-
-# RUN npm install
-
+# Копируем ВЕСЬ исходный код
 # COPY . .
 
-# RUN npx tsc
+# COPY for_accelerator/package.json ./accelerator/
+
+# Устанавливаем зависимости
+# RUN cd ./accelerator && npm install 
+# RUN cd ./nitori_base && npm install
+
+# Компилируем TypeScript
+# RUN cd ./nitori_base && npx tsc
 
 EXPOSE 3000
 
+# WORKDIR /app/nitori_base
+
+# Указываем точку входа
 # CMD ["node", "./dist/index.js"]

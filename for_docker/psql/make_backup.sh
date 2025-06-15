@@ -7,7 +7,7 @@ echo "Создание дампа..."
 set -a
 while IFS= read -r line; do
     echo "$line" | sed 's/[[:space:]]*$//'  # Удаляем пробелы в конце строки
-done < /.env > temp_env && source temp_env
+done < /.env > tmp_env && source tmp_env
 set +a
 
 # Параметры подключения к базе данных

@@ -5,3 +5,6 @@ share/
 accelerator/
 nitoti_base/
 backups/*
+for_accelerator/
+.vscode
+.env
