@@ -5,9 +5,7 @@ echo "Создание дампа..."
 
 # Загрузка переменных из .env файла
 set -a
-while IFS= read -r line; do
-    echo "$line" | sed 's/[[:space:]]*$//'  # Удаляем пробелы в конце строки
-done < /.env > tmp_env && source tmp_env
+source <(sed 's/[[:space:]]*$//' /.env)
 set +a
 
 # Параметры подключения к базе данных
