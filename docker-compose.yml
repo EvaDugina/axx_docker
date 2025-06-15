@@ -21,7 +21,7 @@ services:
       - "5050:${POSTGRES_INNER_PORT}"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER}"]
-      interval: 5s
+      interval: 10s
       timeout: 5s
       retries: 5
       start_period: 20s
@@ -138,10 +138,10 @@ services:
             exit 4
           fi
           "
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 50s
+      interval: 15s
+      timeout: 10s
+      retries: 30
+      start_period: 30s
     depends_on:
       docker-dind:
         condition: service_healthy

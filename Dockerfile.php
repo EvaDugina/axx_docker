@@ -28,6 +28,7 @@ RUN chmod 1777 /tmp
 # Для создания бэкапов
 COPY --from=pgclient /usr/lib/postgresql/14/bin/pg_dump /usr/bin/pg_dump
 COPY ./for_docker/psql/make_backup.sh /make_backup.sh
+RUN apt-get update && apt install dos2unix && dos2unix /make_backup.sh
 RUN chmod +x /make_backup.sh
 
 CMD ["php-fpm", "-R"]

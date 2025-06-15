@@ -7,12 +7,11 @@
 
 ## Git
 
-1. Clone / Pull
+1. Pull
 ```bash
-git clone --recurse-submodules
-ИЛИ:
-git pull --recurse-submodules && \
+git pull --recurse-submodules
 ```
+
 2. Обновление submodules рекурсивно вглубь
 ```bash
 git submodule update --init --recursive
@@ -20,27 +19,29 @@ git submodule update --init --recursive
 
 ## Accelerator
 
-1. Скопировать все файлы из папки ```./for_accelerator``` в ```./accelerator```
+1. Переместить с заменой все файлы из папки ```./for_accelerator``` в ```./accelerator```
 файлы в ```./for_accelerator```: auth_ssh.class.php, auth.php
+2. Добавить бэкап для БД (при необходимости) в папку ```./backups```
+формате бэкапа: ```dump_2025-06-15_19-21-40.sql``` 
 
 ## Nitori Base
-2. Обновление подмодулей
+
+1. Сборка nitori_sandbox (~10 минут)
 ```bash
-git submodule update --recursive
-ИЛИ:
-git submodule update --remote --merge --recursive
-```
-3. Сборка nitori_sandbox
-```bash
-cd ./nitori_sandbox/sandbox
+cd ./nitori_base/sandbox 
 docker build . -t nitori_sandbox
 ```
 
 ## Docker
+
 1. Проверить не занятость внешних портов из ```./docker-compose.yml```
-2. Запустить контейнер
+2. Собрать образ (~11 минут)
 ```bash
-docker-compose build, docker-compose up
+docker-compose build
+```
+3. Поднять контейнер (~10 минут)
+```bash
+docker-compose up
 ```
 
 ---

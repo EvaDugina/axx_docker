@@ -4,3 +4,4 @@
 [submodule "accel"]
 	path = accelerator
 	url = http://vgit.mirea.ru/accelerator/accelerator.git
+	branch = accel-merge
