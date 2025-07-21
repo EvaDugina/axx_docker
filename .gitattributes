@@ -1,3 +1,5 @@
 Dockerfile linguist-language=Docker
 for_accelerator -linguist-detectable
 for_docker -linguist-detectable
+accelerator -linguist-detectable
+nitori_base -linguist-detectable
