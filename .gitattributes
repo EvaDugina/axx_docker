@@ -1,3 +1,3 @@
-Dockerfile* linguist-language=Docker
+Dockerfile* linguist-language=Dockerfile
 for_accelerator/* -linguist-detectable
 for_docker/* -linguist-detectable
